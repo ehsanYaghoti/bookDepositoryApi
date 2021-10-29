@@ -1,0 +1,75 @@
+<link rel="stylesheet" href="/css/home/arraySlider/css/style.css">
+
+
+<% for (let number = 1; number <= repeatNumber; number++) { %>
+    <div class="sliders" id="sliders<%= number  %>">
+        <div class="sliders-header">
+            <h2>عنوان اسلاید ها</h2>
+        </div>
+        <div class="sliders-body" id="sliders-body<%= number %>">
+     
+            <% books.forEach(book => {   %> 
+                
+                <div class="slide">
+                    <div class="slide-picture">
+                        <a href='<%= book.path() %>' >
+                            <img src=<%=  book.thumb ? book.thumb : '' %>  alt=<%= book.title %>  />
+                            <% if(book.discount !== 0){ %>
+                                <div class="discount-badge"></div>
+                                <div class="discount-number"> 
+                                    <%= Number.parseInt(book.discount/book.price * 100)  %>% 
+                                    <br>
+                                    off
+                                </div>    
+                            <% } %> 
+                        </a>
+    
+                    </div>
+                    <div class="slide-info">
+                        <h3 class="slide-title">
+                            <a href="#"><%= book.title %> </a>
+                        </h3>
+                        <div class="slide-author">
+                            <a href="/author/BlindaBauer"><%= book.author %> </a>
+                        </div>
+                        <div class="slide-stars">
+                            <i class="fas fa-star star fullstar"></i>
+                            <i class="fas fa-star star fullstar"></i>
+                            <i class="fas fa-star star fullstar"></i>
+                            <i class="fas fa-star star fullstar"></i>
+                            <i class="fas fa-star star"></i>
+                        </div>
+                        <div class="price-wrap">
+                            <% if(book.discount !== 0){%>
+                            <p class="price"><%= book.price - book.discount %>$
+                                <span class="rrp" ><%= book.price %>$</span>
+                            </p>
+                            <p class="price-save">save  <%= book.discount %>$  </p>
+                            <% } else { %> 
+                                <p class="price"><%= book.price %>$
+                            <% } %> 
+                        </div>
+                        <div class="action-button">
+                            <a href="/basket/addisbn/isbn13/1234567891012">
+                                <button class="basket-add">Add to basket</button>
+                            </a>
+                        </div>
+                    </div>
+    
+                </div>
+    
+            <% }) %> 
+    
+        </div>
+    </div>
+
+
+<% } %> 
+
+
+
+<script id="data" type="application/json"><%= repeatNumber %></script>
+
+<script id="scriptElement" src="/js/arraySlider/slider.js"></script>
+<script src="/js/arraySlider/script.js" ></script>
+    

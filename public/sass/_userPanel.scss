@@ -1,0 +1,250 @@
+.userPanel {
+    display: flex;
+    flex-direction: row;
+    .avatar {
+        display: flex;
+        width: 100px;
+        height: 100px;
+        border: 3px solid #55efc4;
+        border-radius: 500px;
+        justify-content: center;
+        overflow: hidden;
+        img {
+            align-self: center;               
+            max-width: 100%;
+            max-height: 100%;             
+        }
+    }
+    .avatar-big {
+        width: 150px;
+        height: 150px;
+        border: 3px solid #a4a4a4;
+        overflow: hidden;
+    }
+    .userPanel-menu {
+        display: flex;
+        flex-direction: column;
+        flex-basis: 15%;
+        height: fit-content;
+
+        background-color: #fff;
+        margin: 50px;
+        margin-left: 30px;
+        padding: 30px;
+        border-radius: 5px;
+        border: 1px solid rgba(0 , 0 , 0 , .1);
+        .menu {
+            display: flex;
+            flex-direction: column;
+            hr {
+                background-color: #a3a3aa;
+                border-radius: 3px;
+                width: 100%;
+                margin: 30px 0;
+            }
+            .passport {
+                display: flex;
+                flex-direction: column;
+                .passport-body {
+                    display: flex;
+                margin-bottom: 30px;
+
+                    .passport-info {
+                        margin-right: 30px;
+                        word-wrap: normal;
+                        h3 {
+                            font-weight: bold;
+                            margin: 15px 0;
+                        
+                        }
+                        h4 {
+                            margin: 15px 0;
+                            font-weight: normal;
+                            color: #a3a3a3;
+                        }
+                    }
+                }
+
+            }
+            .menu-link {
+                margin-bottom: 30px;
+                display: flex;
+                align-items: center;
+                color: #a4a4a4;
+                a:visited , i.fa-user {
+                    color: #2e80cd;
+                }
+                span {
+                    margin-right: 10px;
+                }
+            }
+        }
+    }
+    .userPanel-dashboard{
+        display: flex;
+        flex-basis: 70%;
+        flex-direction: column;
+        margin: 50px 0;
+        margin-left: 50px;
+        .usePanel-submenu{
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            white-space: nowrap;
+            .submenu-item {
+                display: flex;
+                align-items: center;
+                a {
+                    display: flex;
+                    align-items: center;
+                    .submenu-item-step{
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        background-color: transparent;
+                        margin-left: 10px;
+                        width: 30px;
+                        height: 30px;
+                        color: #55efc4;
+                        border: 2px solid #55efc4;
+                        border-radius: 150px;
+                    }
+
+                    span {
+                        margin-left: 15px;
+                    }
+                }
+                a:hover , a:focus {
+                    .submenu-item-step{
+                        background-color: #55efc4 !important;
+                        color: #fff;
+                    }
+                }
+
+            }
+
+        }
+        .userPanel-body {
+            display: flex;
+            flex-direction: column;
+            background-color: #fff;
+            border: 1px solid rgba(0 , 0 , 0 , .1);
+            border-radius: 5px;
+            padding: 30px;
+            margin: 30px 0;
+            .userPanel-body-title {
+                display: flex;
+                justify-content: space-between;
+                h3 {
+                    font-weight: 500;
+                    font-size: 1.3rem;
+                }
+                button {
+                    cursor: pointer;
+                    color: #2e80cd;
+                    background-color: transparent;
+                    font-size: 1rem;
+                }
+            }
+            hr {
+                background-color: #a3a3aa;
+                border-radius: 3px;
+                width: 100%;
+                margin: 15px 0 30px 0;
+            }
+            .userPanel-body-statment {
+                display: flex;
+                .upload-avatar {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    .upload-button {
+                        align-self: center;
+                        padding: 10px;
+                        margin-top: 30px;
+                        border-radius: 5px;
+                        background-color: #dfe6e9;
+                        color: #636e72;
+                        border: 1px solid rgba(0 , 0 , 0 , .1);
+                        cursor: pointer;
+                        span {
+                            margin-right: 5px;
+                        }
+                    }
+                    input {
+                        margin-top: 30px;
+                        align-self: center;
+                    }
+                }
+                .user-info {
+                    align-self: flex-start;
+                    margin-right: 30px;
+                    .user-info-item {
+                        margin-top: 30px;
+                        :first-child {
+                            font-weight: bold;
+                        }
+                        :nth-child(2) {
+                            color: #9a9a9a;
+                        }
+                    }
+                }
+            }
+            #edit-user-form{
+                // margin: 30px 0;
+                // padding: 30px;
+                form {
+                    display: flex;
+                    flex-direction: column;
+                    padding: 30px;
+                    // width: 100%;
+                    label {
+                        font-weight: 500;
+                        font-size: 1.2rem;
+                        margin: 10px 0 10px 0 ;
+
+                    }
+                    input{
+                        @include border('all' , $input-b);
+                        margin: 10px 0 10px 0 ;
+                        @include border('all' , $input-b);
+                        padding: $input-p;
+                    }
+                    .birthDate{
+                        align-self: flex-end;
+                        margin: 30px 0;
+                        select {
+                            border : 1px solid #a4a4a4;
+                            border-radius: 3px;
+                            outline: none;
+                            color: #a4a4a4;
+                            font-family: 'Vazir';
+                            padding: 5px;
+                        }
+                    }
+                    .buttons{
+                        display: flex;
+                        align-items: center;
+                        justify-content: flex-end;
+                        :first-child{
+                            margin-left: 30px;
+
+                        }
+                        button {
+                            width: 100px;
+                            background-color: $button-back-color;
+                            color: $button-text-color;
+                            padding: $button-p;
+                            border-radius: 5px;
+                            margin-top: 30px;
+                            align-self: center;
+                            cursor: pointer;
+                        }
+                    }
+
+                }
+            }
+        }
+
+    }
+}

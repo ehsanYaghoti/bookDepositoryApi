@@ -1,0 +1,156 @@
+<div class="books">
+    <div class="books-list">
+        <div class="books-info">
+            <div class="category-title">
+                <h3><%= category.name %> </h3>
+            </div>
+            <div class="book-pagination-body">
+                <div class="books-pagination-explain">
+                    <h4>showing <%= 1 %> to <%= books.limit %> of <%= books.totalDocs %> results</h4>
+                </div>
+                <div class="books-pagination-right" >
+                    <select name="" id="">
+                        <option value="">most popular</option>
+                        <option value="">price, low to high</option>
+                        <option value="">price, high to low</option>
+                        <option value="">publication date, old to new</option>
+                        <option value="">publication date, new to old</option>
+                    </select>
+                    <div class="pages-numbers">
+                        <ul class="numbers-list">
+                            <% if(books.hasPrevPage){ %> 
+                                <li class="nexPage">></li>
+                            <% } %> 
+                            <% for(let i = 1 ; i<= books.totalPages ; i++){ %> 
+                                <li class="number-box">
+                                    <a href="/category/<%= category.slug %>/<%= i %>"><%= i %>  </a>
+                                </li>                      
+                            <% } %> 
+                            <% if(books.hasNextPage){ %> 
+                                <li class="nexPage">></li>
+                            <% } %> 
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="books-list-body">
+            <% books.docs.forEach(book => {   %> 
+                
+                <div class="book-wrap">
+                    <div class="book-wrap-picture">
+                        <a href='<%= book.path() %>' >
+                            <img src=<%=  book.thumb ? book.thumb : '' %>  alt=<%= book.title %>  />
+                            <% if(book.discount !== 0){ %>
+                                <div class="discount-badge"></div>
+                                <div class="discount-number"> 
+                                    <%= Number.parseInt(book.discount/book.price * 100)  %>% 
+                                    <br>
+                                    off
+                                </div>    
+                            <% } %> 
+                        </a>
+    
+                    </div>
+                    <div class="book-wrap-info">
+                        <h3 class="book-wrap-title">
+                            <a href="#"><%= book.title %> </a>
+                        </h3>
+                        <div class="book-wrap-author">
+                            <a href="/author/BlindaBauer"><%= book.author %> </a>
+                        </div>
+                        <div class="book-wrap-stars">
+                            <i class="fas fa-star star fullstar"></i>
+                            <i class="fas fa-star star fullstar"></i>
+                            <i class="fas fa-star star fullstar"></i>
+                            <i class="fas fa-star star fullstar"></i>
+                            <i class="fas fa-star star"></i>
+                        </div>
+                        <div class="publication-date">
+                            <%= book.publicationDate %> 
+                        </div>
+                        <div class="price-wrap">
+                            <% if(book.discount !== 0){%>
+                            <p class="price"><%= book.price - book.discount %>$
+                                <span class="rrp" ><%= book.price %>$</span>
+                            </p>
+                            <p class="price-save">save  <%= book.discount %>$  </p>
+                            <% } else { %> 
+                                <p class="price"><%= book.price %>$
+                            <% } %> 
+                        </div>
+                        <div class="action-button">
+                            <a href="/basket/addisbn/isbn13/1234567891012">
+                                <button class="basket-add">Add to basket</button>
+                            </a>
+                        </div>
+                    </div>
+    
+                </div>
+    
+            <% }) %> 
+   
+   
+        </div>
+
+        <div class="book-pagination-body" style="justify-content: flex-end;">
+            <div class="books-pagination-right" >
+                <div class="pages-numbers">
+                    <ul class="numbers-list"> 
+                        <% for(let i = 1 ; i<= books.totalPages ; i++){ %> 
+                            <li class="number-box">
+                                <a href="/category/<%= category.slug %>/<%= i %>"><%= i %>  </a>
+                            </li>                      
+                        <% } %> 
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="books-sidebar">
+        <% if(category.childrens.length){ %> 
+            <div class="category-childrens">
+                <h3><%= category.name %> </h3>
+                <% category.childrens.forEach(cate => { %> 
+                    <a href="/category/<%= cate.slug %> "><%= cate.name %></a> 
+                <% }) %> 
+            </div>
+        <% } %> 
+        <div class="artists">
+            <h3>Artists</h3>
+            <ul>
+                <li><a href="">artist 1</a></li>
+                <li><a href="">artist 2</a></li>
+                <li><a href="">artist 3</a></li>
+                <li><a href="">artist 4</a></li>
+                <li><a href="">artist 5</a></li>
+                <li><a href="">artist 6</a></li>
+            </ul>
+        </div>
+        <div class="filter-search">
+            <h3>Filter and Search</h3>
+            <form action="">
+                <label for="search">Keyword</label>
+                <input type="text" name="search" id="">
+
+                <label for="price-range">Price range</label>
+                <select name="price-range" id="">
+                    <option value="all">All</option>
+                </select>
+
+                <label for="Availability">Availability</label>
+                <select name="Availability" id="">
+                    <option value="all">All</option>
+                </select>
+
+                <label for="language">Language</label>
+                <select name="language" id="">
+                    <option value="all">All</option>
+                </select>
+                
+                <button type="submit">Refine results</button>
+            </form>
+        </div>
+    </div>
+</div>

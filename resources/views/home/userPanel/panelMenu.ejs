@@ -1,0 +1,57 @@
+<div class="userPanel-menu">
+    <ul class="menu">
+        <li class="passport">
+            <div class="passport-body">
+                <div class="avatar">
+                    <img src='<%= user.avatar %>'  alt="<%= user.username %>" >
+                </div>
+                <div class="passport-info">
+                    <h3><%= user.username %></h3>
+                    <h4><%= user.email %></h4>
+                </div>
+            </div>
+            
+            <div class="vip-info">
+                <span>وضعیت عضویت ویژه :
+                    <% if(user.vip) { %> 
+                    <span style="color:  #55efc4;">
+                        <%= vipTimeResiduary %> 
+                    </span> روز دیگر
+                    <% } else { %> 
+                        <span style="color: #ffd32a;">
+                            عضویت ویژه ندارید
+                        </span>
+                    <% } %> 
+                </span>
+            </div>
+        </li>
+            <hr>
+        <li class="menu-link">
+            <i class="fas fa-user"></i>
+            <a href="/user/panel"><span>اطلاعات کاربری</span></a>
+        </li>
+        <li class="menu-link">
+            <i class="fas fa-bell"></i>
+            <span>مدیریت اطلاع رسانی</span>
+        </li>
+        <li class="menu-link">
+            <i class="fas fa-star"></i>
+            <span>عضویت ویژه</span>
+        </li>
+        <li class="menu-link">
+            <i class="far fa-credit-card"></i>
+            <span>بخش مالی</span>
+        </li>
+        <li class="menu-link">
+            <i class="fas fa-shopping-basket"></i>
+            <span>محصولات خریداری شده</span>
+        </li>
+        <% if(req.user.admin){  %> 
+            <li class="menu-link">
+                <i class="fas fa-user"></i>
+                <a href="/admin"><span>پنل ادمین</span></a>
+                
+            </li>    
+        <% } %> 
+    </ul>
+</div>

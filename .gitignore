@@ -1,0 +1,5 @@
+node_modules/
+node_modules/binary-extensions/index.d.ts
+.vscode/
+Developing files/
+coverage/

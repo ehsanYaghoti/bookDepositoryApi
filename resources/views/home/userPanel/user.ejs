@@ -1,0 +1,292 @@
+<div class="userPanel">
+
+    <%- include(viewPath('home/userPanel/panelMenu')) %>
+
+    <div class="userPanel-dashboard">
+
+        <%- include(viewPath('home/userPanel/panelSubmenu')) %>
+
+        <div class="userPanel-body">
+            <div class="userPanel-body-title">
+                <h3>اطلاعات حساب</h3>
+                <button id="edit-user" onclick="editUser()" style="visibility : visible;">ویرایش </button >
+            </div>
+
+            <hr id="horizental-role">
+
+            <div class="userPanel-body-statment" id="userPanel-body-statments">
+                <div class="upload-avatar">
+                    <div class="avatar avatar-big">
+                        <img src='<%= user.avatar %>'  alt="<%= user.username %>" id="avatar">
+    
+                    </div>
+                    <form action="" method="post" id="uploadAvatar" class="upload-avatar">
+
+                        <input type="file" name="image" accept="image/*"/>
+
+                        <button class="upload-button" type="submit">
+                            <i class="fas fa-plus"></i>
+                            <span>آپلود عکس</span>
+                        </button>
+
+                    </form>
+
+                </div>
+                <div class='user-info'>
+                    <% if(user.fullName !== null) { %> 
+                        <div class="user-info-item">
+                            <span>نام کامل :</span>
+                            <span><%= user.fullName %></span>
+                        </div>
+                    <% } %> 
+                    <div class="user-info-item">
+                        <span>نام کاربری :</span>
+                        <span><%= user.username %></span>
+                    </div>
+                    <div class="user-info-item">
+                        <span>ایمیل : </span>
+                        <span><%= user.email %></span>
+                    </div>
+                    <% if(user.birthDate !== null) { %> 
+                        <div class="user-info-item">
+                            <span>تاریخ تولد :</span>
+                            <span><%= birthDate[0] + '/' + birthDate[1] + '/' + birthDate[2]  %></span>
+                        </div>
+                    <% } %> 
+                </div>
+
+            </div>
+
+            <%- include(viewPath('layouts/validMessages')) %>
+
+            <div id="edit-user-form" style="display: none;">
+
+                <form action="/user/panel/update" method="post"  enctype="application/x-www-form-urlencoded" style="width: 100%;">
+
+                    <label for="fullName">نام و نام خانوادگی</label>
+                        <input type="text" name="fullName"  value="<%= user.fullName %>" placeholder="نام و نام خانوادگی را دراینجا وارد کنید" />
+                    <label for="username">آدرس پروفایل</label>
+                        <input type="text" name="username"  value="<%= user.username %>" placeholder="username"/>
+                    <label for="phoneNumberStatic">تلفن ثابت</label>
+                        <input type="text" name="phoneNumberStatic"  value="06132220015" placeholder="تلفن ثابت را وارد کنید"/>
+                    <label for="email">ایمیل</label>
+                        <input type="text" name="email"  value="<%= user.email %>"  placeholder='email' />
+                    <label for="birthDate">تاریخ تولد</label>
+                        <div class="birthDate">
+                            
+                            <SELECT id ="day" name = "dd" <% user.birthDate !== null ? value= user.birthDate.substr('9' , '2')   : '' %>   style="padding: 5px;" ></SELECT>
+                            <SELECT  id ="month" name = "mm" onchange="change_month(this)" style="padding: 5px;" ></SELECT>
+                            <SELECT id ="year" name = "yyyy" onchange="change_year(this)" style="padding: 5px;" ></SELECT>
+                        </div>
+                    <label for="idcardNumber">شماره ملی</label>
+                        <input type="text" name="idcardNumber"  value="<%= user.idcardNumber %>"  placeholder="شماره ملی را دراینجا وارد کنید "/>
+                    <label for="address">آدرس</label>
+                        <input type="text" name="address"  value="<%= user.address %>"  placeholder="آدرس را دراینجا وارد کنید "/>
+                    <div class="buttons">
+
+                        <button type="submit">ثبت تغییرات 
+                        <div class="spinner-grow" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                        </button>
+                        <button type="button" onclick="uneditMode()">انصراف</button>
+                    </div>
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+    
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.js"
+    integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous">
+</script>
+
+<script type="text/javascript">
+
+    var Days = [31,31,31,31,31,31,30,30,30,30,30,29];// index => month [0-11]
+    $(document).ready(function(){
+        var option = '<option value="day">روز</option>';
+        var selectedDay="day";
+        for (var i=1;i <= Days[0];i++){ //add option days
+            option += '<option value="'+ i + '">' + i.toLocaleString('fa' , 'IR') + '</option>';
+        }
+        $('#day').append(option);
+        $('#day').val(selectedDay);
+
+        var option = '<option value="month">ماه</option>';
+        var selectedMon ="month";
+        for (var i=1;i <= 12;i++){
+            option += '<option value="'+ i + '">' + i.toLocaleString('fa' , 'IR') + '</option>';
+        }
+        $('#month').append(option);
+        $('#month').val(selectedMon);
+    
+        var d = new Date();
+        var option = '<option value="year">سال</option>';
+        selectedYear ="year";
+        for (var i=1930;i <= d.getFullYear();i++){// years start i
+            option += '<option value="'+ i + '">' + (i-621).toLocaleString('fa' , 'IR').replace(/٬/g, '') + '</option>';
+        }
+        $('#year').append(option);
+        $('#year').val(selectedYear);
+    });
+
+    function isLeapYear(year) {
+        year = parseInt(year);
+        if (year % 4 != 0) {
+            return false;
+        } else if (year % 400 == 0) {
+            return true;
+        } else if (year % 100 == 0) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    function change_year(select){
+
+        if( isLeapYear( $(select).val() ) ) {
+            Days[11] = 30;
+        }
+        else {
+            Days[11] = 29;
+        }
+
+        if( $("#month").val() == 12 ) {
+            var day = $('#day');
+            var val = $(day).val();
+            $(day).empty();
+            var option = '<option value="day">روز</option>';
+            for (var i=1;i <= Days[11];i++){ //add option days
+                option += '<option value="'+ i + '">' + i.toLocaleString('fa' , 'IR') + '</option>';
+            }
+            $(day).append(option);
+
+            if( val > Days[ month ] ) {
+                val = 1;
+            }
+            $(day).val(val);
+        }
+    }
+
+    function change_month(select) {
+        var day = $('#day');
+        var val = $(day).val();
+        $(day).empty();
+        var option = '<option value="day">روز</option>';
+        var month = parseInt( $(select).val() ) - 1;
+        for (var i=1;i <= Days[ month ];i++){ //add option days
+            option += '<option value="'+ i + '">' + i.toLocaleString('fa' , 'IR') + '</option>';
+        }
+        $(day).append(option);
+        if( val > Days[ month ] ){
+            val = 1;
+        }
+        $(day).val(val);
+    }    
+
+    document.getElementById('close').addEventListener("click", function() {
+        this.parentElement.style.display = 'none';
+    });
+
+    document.getElementById('uploadAvatar').addEventListener('submit' , function(event){
+        event.preventDefault();
+        let file = document.querySelector('input[name="image"]')
+        
+        let formData = new FormData();
+        formData.append('image' , file.files[0])
+
+        fetch('/avatar-upload' , {
+            method : 'POST',
+            body : formData
+        })
+        .then(res => {
+            return res.json()
+        })
+        .then(res => {
+            console.log(res)
+            // image = res[360]
+            // console.log(image)
+            // let img = document.getElementById('avatar')
+            // // let dir = `${image.destination}/${image.filename}`
+            // img.setAttribute('src' , '/uploads/images/2021/5/20/1621519642735-9780008270551-360.jpg')
+            // console.log(img)
+        })
+        .catch(err => console.log(err))
+    })
+
+    // document.getElementById('edit-form').addEventListener('submit' , function(event){
+
+    //     event.preventDefault();
+    //     let form = document.getElementById('edit-form')
+
+
+
+    //     // let fullName = document.querySelector('input[name="fullName"]')
+    //     // let phoneNumberStatic = document.querySelector('input[name="phoneNumberStatic"]')
+    //     // let username = document.querySelector('input[name="username"]')
+    //     // let email = document.querySelector('input[name="email"]')
+    //     // let birthDay = document.querySelector('input[name="birthDay"]')
+    //     // let idcardNumber = document.querySelector('input[name="idcardNumber"]')
+    //     // let address = document.querySelector('input[name="address"]')
+                
+
+
+    //     // let formData = new FormData();
+    //     // formData.append('fullName' , fullName.value)
+    //     // formData.append('username' , username.value)
+    //     // formData.append('email' , email.value)
+    //     // formData.append('birthDay' , birthDay.value)
+    //     // formData.append('idcardNumber' , idcardNumber.value)
+    //     // formData.append('address' , address.value)
+
+
+    //     // console.log(formData)
+    //     fetch('/user/update' , {
+    //         method : 'PUT',
+    //         body : new FormData(form),
+    //         // headers: {
+    //         //     'Content-Type': 'application/json',
+    //         // },
+    //         // mode: 'cors',
+    //         // headers : {}
+    //         // keepalive : true
+    //         // credentials : true
+    //     })
+    //     .then(res => {
+    //         return res.json()
+    //     })
+    //     .then(res => {
+    //         console.log(res)
+    //     })
+    //     .catch(err => console.log(err))
+    // })  
+
+    function editUser(){
+        // console.log(e)
+        document.getElementById('edit-user').style.visibility =  'hidden'
+        document.getElementById('userPanel-body-statments').style.display =  'none'
+        document.getElementById('horizental-role').style.display =  'none'
+        document.getElementById('edit-user-form').style.display =  'flex'
+        // document.getElementById('edit-user-form').style.width =  '100%'
+
+    }
+
+    function uneditMode(){
+
+        
+
+        document.getElementById('edit-user').style.visibility =  'visible'
+        document.getElementById('userPanel-body-statments').style.display =  'flex'
+        document.getElementById('horizental-role').style.display =  'block'
+
+        document.getElementById('edit-user-form').style.display =  'none'
+    }
+
+</script>

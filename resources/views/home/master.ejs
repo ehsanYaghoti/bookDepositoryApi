@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%- defineContent("title")  ||  'فروشگاه کتابخانه'  %>     </title>
+
+    <link rel="stylesheet" href="/css/reset.css">
+
+    <link rel="stylesheet" href="/fonts/all.min.css">
+    <link rel="stylesheet" href="/fonts/FA5/css/all.min.css">
+    <link rel="stylesheet" href="/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="/fonts/font-face.css">
+    
+    <link rel="stylesheet" href="/css/main.css">
+
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.15.5/dist/sweetalert2.min.css">
+    <%- style %>
+</head>
+<body>
+    <header>
+        <div class="nav-top">
+            <div class="nav-top__contetnt">
+                <div class="nav-top__right">
+                    <% if(req.isAuthenticated()) { %> 
+                        
+                        <a href="/user/panel">
+                            <!-- <i class='fa fa-user-circle-o'></i> -->
+                            <i class="fas fa-user"></i>
+                            <%= req.user.username %> 
+                        </a>
+                        <a href="/logout">
+                            <i class="fa fa-user-times"></i>
+                            خروج
+                        </a>    
+                    <% } else { %> 
+                    
+                    <a href="/auth">
+                        <i class='fa fa-user-circle-o'></i>
+                        ثبت نام / ورود 
+                    </a>
+                    <% }  %>
+                    
+                    <a href="/liked">
+                        <!-- <i class='fa fa-heart-o'></i> -->
+                        <i class="far fa-heart"></i>
+                        مورد علاقه ها
+                    </a>
+                    <a href="/user/pursuit_order">
+                        <i class='fa fa-compass'></i>
+                        پیگیری سفارش
+                    </a>
+                </div>
+                <div class="nav-top__left">
+                    <a href="/contact_with_us">
+                        <i class='fa fa-envelope'></i>
+                        ارتباط با ما
+                    </a>
+                    <a href="/help">
+                        <i class='fa fa-info-circle'></i>
+                        راهنما
+                    </a>
+                    <a href="/">
+                        <i class='fa fa-home'></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="nav-main">
+            <div class="logo">
+                <a href="/">
+                    <i class="fa fa-book"></i>
+                    کتابخانه
+                </a>
+            </div>
+            <div class="search">
+                <form class="search-form" action="">
+                    <i class="fa fa-search" id="searchIcon" style="visibility: hidden;"></i>
+
+                    <input type="text" name="search-input" onfocus="showIcon()" class="search-input" placeholder="جستجو کتاب با کلمات کلیدی عنوان / نویسنده / کد کتاب">
+                    
+                    <button type="submit" class="search-button__submit">جستجو</button>
+                    <a href="#">
+                    <button type="button" class="search-button__advance">جستجو پیشرفته</button>
+                    </a>
+                </form>
+            </div>
+        </div>
+        <div class="nav-bottom">
+            <div class="nav-bottom__right">
+                <a href="#">
+                    <span>خرید توسط دسته بندی</span>
+                    <i class="fa fa-angle-down"></i>
+                </a>
+                <a href="#">
+                    <span>جدید ترین ها</span>
+                </a>
+                <a href="#">
+                    <span>پرفروش ترین ها</span>
+                </a>
+                <a href="#">
+                    <span>به زودی</span>
+                </a>
+                <a href="#">
+                    <span>نشر جدید</span>
+                </a>
+            </div>
+            <div class="nav-bottom__left">
+                <select name="" id="language-select">
+                    <option value="">
+                        فارسی 
+                        <i class="fa fa-chevron-down"></i>
+                    </option>
+                    <option value="">
+                        Eng
+                    </option>
+                </select>
+                <div id="shop-basket">
+                    <span id='selected-cost'>0.00 تومان</span>
+                    <span id='selected-amount'>0</span>
+                    <a href="#">
+                        <i class="fa fa-shopping-basket"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <%- body %>
+    
+    <footer id="footer">
+        <div class="news-latter">
+            <i class="fa fa-envelope"></i>
+            <p>جهت دریافت آخرین تخفیف ها و محصولات </br>
+                 در خبر نامه عضو شوید.</p>
+            <form action="#">
+                <input type="text" name="newslatter" id="news-latter__input" placeholder="آدرس ایمیل">
+                <button type="submit">عضویت</button>
+            </form>
+        </div>
+        <div class="follow-us">
+            <span>ما را دنبال کنید :</span>
+            <div class="follow-us__icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-pinterest"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <!-- <a href="#"><i class="fa fa-facebook"></i></a>  -->
+                <!-- <a href="#"><i class="fa fa-instagram"></i></a> -->
+                <!-- <a href="#"><i class="fa fa-pinterest-p"></i></a> -->
+                <!-- <a href="#"><i class="fa fa-twitter"></i></a>    -->
+            </div>
+        </div>
+        <div class="footer-main">
+            <div class="footer-main__col">
+                <h3>بخش های سایت</h3>
+                <a href="#">درباره ما</a>
+                <a href="#">نقشه سایت</a>
+                <a href="#">بوکمارک ها</a>
+                <a href="#">ورود / عضویت</a>
+            </div>
+            <div class="footer-main__col">
+                <h3>راهنما</h3>
+                <a href="#">راهنما</a>
+                <a href="#">ارتباط با ما</a>
+                <a href="#">بوکمارک ها</a>
+                <a href="#">ورود / عضویت</a>
+            </div>
+            <div class="footer-main__col">
+                <h3>همکاری با ما</h3>
+                <a href="#">فرصت های شغلی</a>
+                <a href="#">نقشه سایت</a>
+
+            </div>
+            <div class="footer-main__col">
+                <h3>موارد مهم</h3>
+                <a href="#">کوکی ها</a>
+                <a href="#">شرایط</a>
+                <a href="#">موارد امنیتی</a>
+            </div>
+        </div>
+    </footer>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.15.5/dist/sweetalert2.all.min.js"></script>
+    <% let sweetalert = req.flash('sweetalert')
+       if(sweetalert.length) {  
+        let data = sweetalert[0] %>
+        <script>
+            Swal.fire({
+                title: '<%= data.title %>',
+                text:  '<%= data.message %>',
+                icon:  '<%= data.type %>',
+                showConfirmButton: <%= data.button !== null ? true : false %>,
+                confirmButtonText: '<%= data.button %>',
+                timer : <%= data.button !== null ? 'null' : data.timer %>
+            })
+        </script>
+    <% } %> 
+
+
+    <%- script %> 
+</body>
+</html>

@@ -1,0 +1,156 @@
+<div class="book-page">
+
+    <div class="bread-crumb">
+        <label cla for="">Categories </label>
+        <% book.categories.forEach(category => { %>
+            <span><a  href='<%= category.path() %>' ><%= category.name %> | </a></span>
+        <% }) %> 
+    </div>
+
+    <div class="book-info">
+        <div class="book-content">
+            <div class="book-image">
+                <img src=<%= book.images['original'] %>  alt=<%= book.image %>  >
+            </div>
+            <div class="book-statement">
+                <div class="book-minInfo">
+                    <span class="book-title"><%= book.title %> </span>
+                    <span class="book-language">Language : <%= book.language %> </span>
+                    <span class="book-author">By(Author) : <%= book.author %> </span>
+                </div>
+                <p class="book-abstract" id="bookStatement" dir="ltr"><%- book.statement %>  </p>
+                <br>
+                <a  class="read-more" id="read-more">... Read more</a>
+                
+            </div>
+        </div>
+        <div class="book-price">
+            <% if(book.discount !== 0){%>
+                <div class="price-wrap price-discount">            
+                    <p class="price">
+                        <%= book.price - book.discount %> $
+                        <span class="rrp" ><%= book.price %> $</span> 
+                    </p>
+                    <p class="price-save">save  <%= book.discount %> $</p>
+                </div>
+            <% } else { %> 
+                <div class="price-wrap" >
+                    <span class="price"><%= book.price %> $</span> 
+                </div>
+            <% } %> 
+            
+            <div class="price-explain">
+                <div class="advertise"><i class="fas fa-rocket"></i> <span> Free delivery worldwide</span></div>
+                <div class="advertise"><i class="far fa-check-circle"></i> <span> Available. Dispatched from the UK in 1 business day</span></div>    
+            </div>
+            
+            <button class="add toBasket">Add to basket</button>
+            <button class="add toWishlist">Add to Wish list</button>
+        </div>
+    </div>
+
+    <div class="book-details book-page-block">
+        <h3>Product Details</h3>
+        <ul class="book-details-list"> 
+            <li><label for="">Dimensions</label>  <%= book.dimensions %></li>
+            <li><label for="">publicationDate</label>  <%= book.publicationDate %></li>
+            <li><label for="">publisher</label>  <%= book.publisher %></li>
+            <li><label for="">publicationPlace</label>  <%= book.publicationPlace %></li>
+            <li><label for="">ISBN</label>  <%= book.ISBN %></li>
+            <li><label for="">language</label>  <%= book.language %></li>
+            <li><label for="">weight</label>  <%= book.weight %></li>
+        </ul>
+    </div>
+
+    <div class="bread-crumb">
+        <label cla for="">Categories </label>
+        <% book.categories.forEach(category => { %>
+            <span><a href="/books/"><%= category.name %> | </a></span>
+        <% }) %> 
+    </div>
+
+    <div class="allSliders-container" style="margin: 0;">
+        <%- include(viewPath('layouts/slider') , {books , repeatNumber : 2}) %>
+    </div>
+
+    <div class="review-text book-page-block">
+        <h3>Review Text</h3>
+        <div class="review-body">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam fuga nam doloremque fugiat perspiciatis quae ipsum enim. Deleniti nam soluta quasi, suscipit dolore, cumque incidunt quibusdam error et sed aliquid.
+        </div>
+    </div>
+
+    <div class="review-quote book-page-block">
+        <h3>Review Quote</h3>
+        <div class="review-body">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam fuga nam doloremque fugiat perspiciatis quae ipsum enim. Deleniti nam soluta quasi, suscipit dolore, cumque incidunt quibusdam error et sed aliquid.
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam fuga nam doloremque fugiat perspiciatis quae ipsum enim. Deleniti nam soluta quasi, suscipit dolore, cumque incidunt quibusdam error et sed aliquid.
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam fuga nam doloremque fugiat perspiciatis quae ipsum enim. Deleniti nam soluta quasi, suscipit dolore, cumque incidunt quibusdam error et sed aliquid.
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam fuga nam doloremque fugiat perspiciatis quae ipsum enim. Deleniti nam soluta quasi, suscipit dolore, cumque incidunt quibusdam error et sed aliquid.
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam fuga nam doloremque fugiat perspiciatis quae ipsum enim. Deleniti nam soluta quasi, suscipit dolore, cumque incidunt quibusdam error et sed aliquid.
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam fuga nam doloremque fugiat perspiciatis quae ipsum enim. Deleniti nam soluta quasi, suscipit dolore, cumque incidunt quibusdam error et sed aliquid.
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam fuga nam doloremque fugiat perspiciatis quae ipsum enim. Deleniti nam soluta quasi, suscipit dolore, cumque incidunt quibusdam error et sed aliquid.
+
+        </div>
+    </div>
+
+    <div class="about-author book-page-block">
+        <div class="about-author-title">
+            <h3>About Author</h3>
+        </div>
+        <div class="about-author-body">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam fuga nam doloremque fugiat perspiciatis quae ipsum enim. Deleniti nam soluta quasi, suscipit dolore, cumque incidunt quibusdam error et sed aliquid.
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam fuga nam doloremque fugiat perspiciatis quae ipsum enim. Deleniti nam soluta quasi, suscipit dolore, cumque incidunt quibusdam error et sed aliquid.
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam fuga nam doloremque fugiat perspiciatis quae ipsum enim. Deleniti nam soluta quasi, suscipit dolore, cumque incidunt quibusdam error et sed aliquid.
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam fuga nam doloremque fugiat perspiciatis quae ipsum enim. Deleniti nam soluta quasi, suscipit dolore, cumque incidunt quibusdam error et sed aliquid.
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam fuga nam doloremque fugiat perspiciatis quae ipsum enim. Deleniti nam soluta quasi, suscipit dolore, cumque incidunt quibusdam error et sed aliquid.
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam fuga nam doloremque fugiat perspiciatis quae ipsum enim. Deleniti nam soluta quasi, suscipit dolore, cumque incidunt quibusdam error et sed aliquid.
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam fuga nam doloremque fugiat perspiciatis quae ipsum enim. Deleniti nam soluta quasi, suscipit dolore, cumque incidunt quibusdam error et sed aliquid.
+
+        </div>
+    </div>
+    
+</div>
+
+<script>
+
+    let element = document.getElementById('bookStatement')
+
+    let string = element.innerText
+    
+    var stringToHTML = function (str) {
+	    var parser = new DOMParser();
+	    var doc = parser.parseFromString(str, 'text/html');
+        console.log(doc)
+
+        return doc.body.innerHTML;
+    };
+
+    element.innerHTML = stringToHTML(string)
+
+    let readElement = document.getElementById('read-more')
+
+    // if(window.getComputedStyle(element).height === '400px'){
+
+    //     readElement.innerHTML = ''
+    
+    // }
+
+    readElement.addEventListener('click' , ()=>{
+        console.log('click');
+
+        if(window.getComputedStyle(element).height > '400px' || readElement.innerHTML === 'Read less'){
+            element.style.height = '400px'
+            readElement.innerHTML = '... Read more'
+        } else if(window.getComputedStyle(element).height <= '400px' || readElement.innerHTML === '... Read more'){
+            element.style.height = 'max-content'
+            readElement.innerHTML = 'Read less'
+        }
+        
+    })
+
+    console.log(window.getComputedStyle(element).height)
+
+
+
+</script>

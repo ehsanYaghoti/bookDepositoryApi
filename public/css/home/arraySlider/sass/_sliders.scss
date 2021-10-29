@@ -1,0 +1,271 @@
+//sass --watch public/css/home/arraySlider/sass/style.scss public/css/home/arraySlider/css/style.css
+body {
+    // display: flex;
+    font-family: 'Vazir';
+    background-color: #ecf0f1;
+}
+
+.price-wrap {
+    margin-top: .5rem;
+    height: 2.8125rem;
+    .price {
+        letter-spacing: 0.5px;
+        font-size: 1.5rem;
+        color: #ff0072;
+        padding-bottom: .2rem;
+        .rrp {
+            text-decoration: line-through;
+            font-size: .9rem;
+            color: #333;
+            opacity: .5;
+        }
+    }
+
+    .price-save {
+        font-size: .9rem;
+        color: #333;
+        font-style: italic;
+    }
+}
+
+.allSliders-container{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    // flex-basis: 70%;
+    // width: 90%;
+    margin-left: 30px;
+    flex-basis: 80%;
+    .sliders {
+        // align-self: center;
+        background-color: #fff;
+        display: flex;
+        height: 400px;
+        width: 100%;
+        overflow: hidden;
+        position: relative;
+        flex-direction: column;
+        direction: rtl;
+        margin-bottom: 15px;
+        padding-bottom: 30px;
+
+        // margin: 0 auto;
+        // margin-top: 30px;    
+        border: 1px solid rgba(0 , 0 , 0 , .1);
+        border-radius: 5px;
+        a {
+            color: #4d4d4d;
+        }
+
+        h3 {            
+            font-size: 1.17em ;
+            font-weight: bolder;
+            color: #4d4d4d;
+            
+        }
+        
+        button {
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            outline: none;
+        }
+
+
+        .sliders-header {
+            display: flex;
+            align-items: center;
+            height: 10%;
+            border-bottom: 1px solid rgba(0 , 0 , 0 , .1);
+            font-size: 1.2rem;
+            font-weight: 500;
+            h2 {
+                margin-right: 15px;
+            }
+        }
+        .sliders-body {
+            display: flex;
+            position: absolute;
+            top: 10%;
+            height: 90%;
+            // height: fit-content;
+            transition: right 1s cubic-bezier(0.33, 1, 0.68, 1);;
+            .slide {
+                padding: 7.5px 15px;
+                direction: ltr;
+                text-overflow: ellipsis;
+                a:hover{
+                    text-decoration: underline;
+                }
+                .slide-picture {
+                    position: relative;
+                    height: 45%;
+                    width: max-content; 
+
+                    display: flex;
+                    box-sizing:  content-box;
+                    // height: fit-content;
+                    transition: height 3s linear 2s;
+                    // border: 1px solid  rgba(0 , 0 , 0 , .1);
+                    // background : linear-gradient( #d3cce3 , #e9e4f0);
+                    border-radius: 3px;
+                    overflow: hidden;
+                    a {
+                        // position: relative;
+                        img {
+
+                            height: 100%;
+                            object-fit: cover;
+                        }
+    
+                        .discount-badge {
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            z-index: 1;
+                            content: '';
+                            border-style: solid;
+                            border-width: 60px  60px 0 0;
+                            border-color: #ff0072 transparent transparent transparent;
+    
+                            // &::before {
+                            //     content: '17% off';
+                            // }
+                        }
+                        .discount-number{
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            z-index: 1;
+                            color: #ffffffff;
+                            padding: .25rem;
+                            line-height: 1.2;
+                        }
+                    }
+    
+                }
+                .slide-info {
+                    height: 50%;
+
+                    .slide-title {
+                        height: 20%;
+                        max-width: 13rem;
+                        padding: 0.5rem 0;
+                        white-space:  normal;
+                        line-height: 1.2;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        box-sizing: content-box;
+                        margin-bottom: 5px;
+                    }
+                    .slide-author {
+                        padding-bottom: 0.5rem;
+                    }
+                    .slide-stars {
+                        // padding-bottom: 0.5rem;
+                        i.star {
+                            color: #333;
+                            opacity: .1;
+                        }
+                        i.star.fullstar{
+                            color: #fed221;
+                            opacity: 1;
+                        }
+                    }
+                    .price-wrap {
+                        margin-top: .5rem;
+                        // height: 2.8125rem;
+                        .price {
+                            letter-spacing: 0.5px;
+                            font-size: 1.5rem;
+                            color: #ff0072;
+                            padding-bottom: .2rem;
+                            .rrp {
+                                text-decoration: line-through;
+                                font-size: .9rem;
+                                color: #333;
+                                opacity: .5;
+                            }
+                        }
+                        .price-save {
+                            font-size: .9rem;
+                            color: #333;
+                            font-style: italic;
+                        }
+                    }
+                    .action-button {
+                        margin-top: .5rem;
+                        button.basket-add {
+                            padding: 0 .5rem;
+                            height: 2.1875rem ;
+                            width: 8.75rem;
+                            color: #ffffffff;
+                            background-color: #22a6b3;
+                            font-size: 1.01rem;
+    
+                        }
+                        .basket-add:hover {
+                            background-color: #7ed6df;
+                            opacity: 1;
+                        }
+                    }
+                }
+            }
+        }
+    
+        /* Next & previous buttons */
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            margin-top: -22px;
+            padding: 16px;
+            color: #333;
+            background-color: rgba(255, 255, 255, 0.616) ;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.6s ease;
+            border-radius: 3px 0 0 3px;
+            user-select: none;
+            /* animation: name duration timing-function delay iteration-count direction fill-mode; */
+        }
+        
+        /* Position the "next button" to the right */
+        .next {
+            left: 0;
+            border-radius: 0 3px 3px 0;
+        }
+        
+        /* On hover, add a black background color with a little bit see-through */
+        .prev:hover, .next:hover {
+            background-color: rgba(0,0,0,0.8);
+            color: #fff;
+        }
+      
+    
+    }
+
+}
+
+.dots {
+    text-align: center;
+    margin-top: 10px;
+    direction: rtl;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+  
+.active, .dot:hover {
+    background-color: #717171;
+}

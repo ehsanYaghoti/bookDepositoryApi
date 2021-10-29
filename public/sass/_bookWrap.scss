@@ -1,0 +1,306 @@
+body {
+    // display: flex;
+    font-family: 'Vazir';
+    background-color: #ecf0f1;
+}
+
+.book-pagination-body{
+    display: flex;
+    background-color: #fff;
+
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    .book-pagination-explain{
+        font-weight: 500;
+    }
+    .books-pagination-right{
+        display: flex;
+        align-items: center;
+        .pages-numbers{
+            margin: 0 10px;
+            .numbers-list{
+                @include border('all' , $border-thin);
+                .number-box{
+                    padding : 5px;
+                    border-radius: 3px;
+                    color: $color-concrete;
+                    font-size: .9rem;
+                    &:hover {
+                        background-color: $color-clouds;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.books{
+    padding: 50px;
+    display: flex;
+    direction: rtl;
+
+    .books-list{
+        direction: ltr;
+        display: flex;
+        flex-direction: column;
+        width: 80%;
+        height: fit-content;
+
+        .books-info{
+            color: $color-draculaOrchid;
+            background-color: #fff;
+            display: flex;
+            flex-direction: column;
+            @include border('bottom' , $border-thin);
+            margin-bottom: 10px;
+            .category-title{
+                padding: 30px;
+                color: $color-draculaOrchid;
+                font-size: $font-size-regular;  
+                font-weight: 600;
+            }
+            .book-pagination-body{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 15px;
+                .book-pagination-explain{
+                    font-weight: 500;
+                }
+                .books-pagination-right{
+                    display: flex;
+                    align-items: center;
+                    .pages-numbers{
+                        margin: 0 10px;
+                        .numbers-list{
+                            @include border('all' , $border-thin);
+                            .number-box{
+                                padding : 5px;
+                                border-radius: 3px;
+                                color: $color-concrete;
+                                font-size: .9rem;
+                                &:hover {
+                                    background-color: $color-clouds;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
+
+        .books-list-body{
+            display: flex;
+            background-color: #fff;
+            @include margin('bottom' , 10px);
+            .book-wrap {
+                padding: 7.5px 15px;
+                direction: ltr;
+                text-overflow: ellipsis;
+                margin-bottom: 10px;
+                a:hover{
+                    text-decoration: underline;
+                }
+                .book-wrap-picture {
+                    position: relative;
+                    // height: 45%;
+                    height: 200px;
+                    width: max-content; 
+        
+                    display: flex;
+                    box-sizing:  content-box;
+                    // height: fit-content;
+                    transition: height 3s linear 2s;
+                    // border: 1px solid  rgba(0 , 0 , 0 , .1);
+                    // background : linear-gradient( #d3cce3 , #e9e4f0);
+                    border-radius: 3px;
+                    overflow: hidden;
+                    a {
+                        // position: relative;
+                        img {
+        
+                            height: 100%;
+                            object-fit: cover;
+                        }
+        
+                        .discount-badge {
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            z-index: 1;
+                            content: '';
+                            border-style: solid;
+                            border-width: 60px  60px 0 0;
+                            border-color: #ff0072 transparent transparent transparent;
+        
+                            // &::before {
+                            //     content: '17% off';
+                            // }
+                        }
+                        .discount-number{
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            z-index: 1;
+                            color: #ffffffff;
+                            padding: .25rem;
+                            line-height: 1.2;
+                        }
+                    }
+        
+                }
+                .book-wrap-info {
+                    height: 25%;
+        
+                    .book-wrap-title {
+                        height: 20%;
+                        max-width: 13rem;
+                        padding: 0.5rem 0;
+                        white-space:  normal;
+                        line-height: 1.2;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        box-sizing: content-box;
+                        margin-bottom: 5px;
+                    }
+                    .book-wrap-author {
+                        padding-bottom: 0.5rem;
+                    }
+                    .book-wrap-stars {
+                        // padding-bottom: 0.5rem;
+                        i.star {
+                            color: #333;
+                            opacity: .1;
+                        }
+                        i.star.fullstar{
+                            color: #fed221;
+                            opacity: 1;
+                        }
+                    }
+                    .publication-date {
+                        margin-top: 10px;
+                        color: $color-concrete;
+                    }
+                    .price-wrap {
+                        margin-top: .5rem;
+                        // height: 2.8125rem;
+                        height: 45px;
+                        .price {
+                            letter-spacing: 0.5px;
+                            font-size: 1.5rem;
+                            color: #ff0072;
+                            padding-bottom: .2rem;
+                            .rrp {
+                                text-decoration: line-through;
+                                font-size: .9rem;
+                                color: #333;
+                                opacity: .5;
+                            }
+                        }
+                        .price-save {
+                            font-size: .9rem;
+                            color: #333;
+                            font-style: italic;
+                        }
+                    }
+                    .action-button {
+                        margin-top: .5rem;
+                        button.basket-add {
+                            padding: 0 .5rem;
+                            height: 2.1875rem ;
+                            width: 8.75rem;
+                            color: #ffffffff;
+                            background-color: #22a6b3;
+                            font-size: 1.01rem;
+        
+                        }
+                        .basket-add:hover {
+                            background-color: #7ed6df;
+                            opacity: 1;
+                        }
+                    }
+                }
+            }
+        
+        }
+
+    }
+
+    .books-sidebar{
+        direction: ltr;
+        display: flex;
+        flex-direction: column;
+        width: 25%;
+        margin-right: 40px;
+        .category-childrens{
+            background-color: #fff;
+            @include padding('all' , 10px);
+            @include margin('bottom' , 10px);
+            border-radius: 3px;
+            line-height: 1.5;
+            h3{
+                @include padding('bottom' , 10px);
+                @include border('bottom' , 3px solid $color-cyan);
+                @include margin('bottom' , 10px);
+            }
+        }
+        .artists {
+            background-color: #fff;
+            @include padding('all' , 10px);
+            @include margin('bottom' , 10px);
+            line-height: 1.8;
+            border-radius: 3px;
+            h3 {
+                color: $color-draculaOrchid;
+                @include border('bottom' , $border-thin);
+            }
+            li{
+                @include border('bottom' , $border-thin);
+            }
+        }
+        .filter-search{
+            h3 {
+                color: $color-draculaOrchid;
+                @include padding('bottom' , 10px);
+                @include border('bottom' , $border-thin);
+                @include margin('bottom' , 10px)
+            }
+            background-color: #fff;
+            @include padding('all' , 10px);
+            border-radius: 3px;
+
+            form{
+                display: flex;
+                flex-direction: column;
+                // align-items: center;
+                label {
+                    align-self: flex-start;
+                    @include margin('bottom' , 5px)
+                }
+                select , input {
+                    // flex-basis: 50%;
+                    width: 100%;
+                    @include margin('bottom' , 15px)
+                }
+                button{
+                    width: 100%;
+                    padding: 0.35rem .5rem;
+                    height: 2.1875rem ;
+                    // width: 8.75rem;
+                    color: #ffffffff;
+                    background-color: #22a6b3;
+                    font-size: 1.01rem;
+                    &:hover{
+                        background-color: #7ed6df;
+                        opacity: 1;
+                    }
+                }
+
+            
+            }
+        }
+
+    }
+}

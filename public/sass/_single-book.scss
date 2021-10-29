@@ -1,0 +1,212 @@
+.book-page{
+    scroll-behavior: smooth;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    width: 90%;
+    margin: 50px 0;
+    direction: ltr;
+    label{
+        color: $color-midnightBlue ;
+        font-size: 1.1rem;
+        font-weight: 500;
+        &::after{
+            content: ': ';
+            color: $color-midnightBlue ;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+    }
+    .book-page-block{
+        background-color: $absolute-white;
+        margin: 30px 0;
+        display: flex;
+        flex-direction: column;
+        @include border('all' , $border-thin );
+        border-radius: 3px;
+        color: $color-asbestos;
+        padding: 15px;
+        line-height: 1.5;
+        h3{
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: $color-midnightBlue;
+            padding: 5px 0;
+            margin-bottom: 5px;
+            height: fit-content;
+            @include border('bottom' , $border-regular)
+        }
+        label{
+            color: $color-midnightBlue ;
+            font-size: 1.1rem;
+            font-weight: 500;
+            &::after{
+                content: ': ';
+                color: $color-midnightBlue ;
+                font-size: 1.1rem;
+                font-weight: 500;
+            }
+        }
+    }
+    .bread-crumb{
+        background-color: transparent;
+        padding: 15px;
+        @include border('all' , $border-regular);
+        border-radius: 3px;
+        margin-bottom: 30px;
+    }
+    .book-info{
+        display: flex;
+        flex-direction: row;
+        .book-content{
+            display: flex;
+            flex-basis: 80%;
+            background-color: $absolute-white;
+            .book-image{
+                flex-basis: 30%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                // margin: 10px 30px;
+                // height: 200px;
+                width: max-content;
+                // height: max-content;
+                height: 400px;
+                border-radius: 3px;
+                margin: 30px 0 0 30px;
+
+                img{
+                    width: 100%;
+                    height: 100%;
+                    // object-fit: cover;
+                    object-fit : fill;
+                    object-position: center;
+                    border-radius: inherit;
+                    @include border('all' , $border-thin);
+
+                }
+            }
+            .book-statement{
+                flex-basis: 65%;
+                padding: 30px;
+                padding-left: 50px;
+                color: $color-draculaOrchid;
+                .book-minInfo {
+                    display: flex;
+                    flex-direction: column;
+                    margin-bottom: 50px;
+                    .book-title{
+                        font-size: 1.65rem;
+                        font-weight: 600;
+                        color: $color-wetAsphalt;
+                        padding-bottom: 5px;
+                        @include border('bottom' , $border-regular)
+                    }
+                    .book-language{
+                        margin: 10px 0;
+                    }
+                }
+                .book-abstract{
+                    line-height: 1.5;
+                    // overflow-wrap: break-word;
+                    overflow-y: hidden;
+                    text-overflow: ellipsis;
+                    height: 400px;
+
+                }
+                .read-more{
+                    color: $color-button-background;
+                    // margin: 10px;
+                    padding-top: 10px;
+                    font-size: $font-size-regular;
+                    cursor: pointer;
+                    &:hover{
+                        color: $color-draculaOrchid;
+                    }
+                }
+            }
+        }
+        .book-price{
+            flex-basis: 20%;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+            height: fit-content;
+            padding: 30px;
+            @include border('all' , $border-thin);
+            border-radius: 5px;
+            margin-left: 30px;
+            background-color: $absolute-white;
+            .price-explain{
+                @include border('bottom' , $border-thin);
+                margin: 10px 0;
+                .advertise{
+                    // height: 50px;
+                    display: flex;
+                    align-items: center;
+                    margin: 15px 0;
+                    line-height: 1.5;
+
+                    i{
+                        font-size: 2rem;
+                        color: $color-asbestos;
+                        margin-right: 5px;
+                    }
+                }
+                span{
+                    color: $color-silver;
+                }
+            }
+            .price-wrap{
+                @include border('bottom' , $border-thin);
+                .price{
+                    color: $color-priceFont;
+                    font-size: 2rem;
+                    width: 100%;
+                    // &::after{
+                    //     content: ' $';
+                    // }
+                }
+            }
+            .price-wrap.price-discount{
+                padding-bottom: 15px;
+            }
+            .add{
+                width: 100%;
+                border-radius: 3px;
+                margin: 10px 0;
+                padding: 10px;
+                &:hover{
+                    opacity: .7;
+                    cursor: pointer;
+                }
+            }
+            .toBasket{
+                color: $absolute-white;
+                background-color: $color-button-background;
+            }
+            .toWishlist{
+
+                background-color: $color-silver;
+                color: $color-midnightBlue;
+            }
+
+        }
+    }
+    .book-details{
+        height: 150px;
+        .book-details-list{
+            height: 90%;
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            li{
+                margin: 5px 0;
+            }
+        }
+    }
+}
+
+
+
